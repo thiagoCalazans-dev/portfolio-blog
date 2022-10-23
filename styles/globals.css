@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 body {
-  @apply bg-zinc-700  text-zinc-100;
+  @apply text-zinc-100;
 }
 
 a {
-  @apply cursor-pointer hover:text-orange-400 hover:underline hover:underline-offset-8 transition-all;
+  @apply cursor-pointer hover:text-primary-hover hover:underline hover:underline-offset-8 transition-all;
 }
