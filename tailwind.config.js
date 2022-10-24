@@ -16,7 +16,7 @@ module.exports = {
         xl: '5px 5px 0px #000000'
       },
       backgroundImage: {
-        'banner': "url('../public/images/mario.jpg')",      
+        'banner': "url('../public/images/banner.jpeg')",      
        
       },
       fontFamily: {
