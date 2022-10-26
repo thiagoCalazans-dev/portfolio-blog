@@ -1,5 +1,6 @@
 import { Heading } from "./design/Heading";
-import { TechnologyProgress } from "./technologyProgress";
+import { TechnologyProgress } from "./TechnologyProgress";
+
 
 interface Techlonogy {
   id: string,
@@ -17,8 +18,8 @@ interface SkillSectionProps {
 export function SkillSection({ technologies }: SkillSectionProps) {
 
   return (
-    <section className="bg-terciary pt-12 flex flex-col items-center">
-      <Heading className="mb-14">Skills</Heading>
+    <section className="bg-terciary pt-12 flex flex-col items-center border-secondary  border-b-8">
+      <Heading size="lg" className="mb-14 text-white">Skills</Heading>
       <div className="grid grid-cols-2 gap-12 mb-28">
         {
           technologies?.map((tech) => (

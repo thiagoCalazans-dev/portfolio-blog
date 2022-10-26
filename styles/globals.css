@@ -9,3 +9,5 @@ body {
 a {
   @apply cursor-pointer hover:text-primary-hover hover:underline hover:underline-offset-8 transition-all;
 }
+
+progress::-webkit-progress-value { background: #2C514C; }

@@ -15,13 +15,9 @@ interface techProps {
 
 export function TechnologyProgress({ tech }: techProps) {
 
-    const progressBarValue = tech.value
-    console.log(progressBarValue)
-
     return (
         <article className="flex justify-center items-center gap-3">
             <div className="relative h-full w-full">
-
                 <Image
                     className="bg-transparent"
                     width={70}
@@ -34,13 +30,14 @@ export function TechnologyProgress({ tech }: techProps) {
                 <Heading asChild>
                     <h3>{tech.name}</h3>
                 </Heading>
-                <Progress.Root
+                <progress className="h-10 w-80 border-zinc-900 border-4 bg-zinc-800  relative overflow-hidden text-primary" value={tech.value} max={100} />
+                {/* <Progress.Root
                     className=" flex h-9 w-80 border-zinc-900 border-4 bg-zinc-800  relative overflow-hidden"
                     max={100}
-                    value={progressBarValue}
+                    value={barValue}
                 >
-                    <Progress.Indicator className={`flex1 h-10 bg-primary w-[${progressBarValue}%]`} />
-                </Progress.Root>
+                    <Progress.Indicator className={progressBarClass} />
+                </Progress.Root> */}
             </div>
         </article>)
 }

@@ -4,6 +4,7 @@ import { LandingSection } from "../components/LandingSection";
 import { SkillSection } from "../components/SkillsSection";
 import { gql } from "@apollo/client";
 import client from "../lib/apollo";
+import { ProjectsSection } from "../components/ProjectsSection";
 
 interface Technology {
   id: string,
@@ -15,10 +16,10 @@ interface Technology {
 }
 
 interface HomeProps {
-  data: Technology[]
+  technologies: Technology[]
 }
 
-const Home = ({ data: technologies }: HomeProps) => {
+const Home = ({ technologies }: HomeProps) => {
 
   console.log(technologies)
 
@@ -28,6 +29,7 @@ const Home = ({ data: technologies }: HomeProps) => {
       <main>
         <LandingSection />
         <SkillSection technologies={technologies} />
+        <ProjectsSection />
       </main>
     </>
   );
@@ -35,7 +37,8 @@ const Home = ({ data: technologies }: HomeProps) => {
 
 export default Home;
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetStaticProps = async () => {
+
   const { data } = await client.query({
     query: gql`
     query Technologies {
@@ -50,15 +53,12 @@ export const getStaticProps: GetStaticProps = async () => {
     }`
   });
 
-
-  const { technologies } = data
-
-  console.log(technologies)
+  console.log(data)
 
 
   return {
     props: {
-      technologies: technologies
+      technologies: data.technologies
     },
   };
 }
