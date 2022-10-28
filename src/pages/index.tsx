@@ -13,15 +13,31 @@ interface Technology {
   image: {
     url: string,
   }
+
+}
+
+export interface Project {
+  id: string,
+  name: string,
+  cover: {
+    url: string,
+  },
+  libraries: {
+    icon: {
+      url: string
+    }
+  }[]
+
 }
 
 interface HomeProps {
   technologies: Technology[]
+  projects: Project[]
 }
 
-const Home = ({ technologies }: HomeProps) => {
+const Home = ({ technologies, projects }: HomeProps) => {
 
-  console.log(technologies)
+  console.log(projects)
 
   return (
     <>
@@ -29,7 +45,7 @@ const Home = ({ technologies }: HomeProps) => {
       <main>
         <LandingSection />
         <SkillSection technologies={technologies} />
-        <ProjectsSection />
+        <ProjectsSection projects={projects} />
       </main>
     </>
   );
@@ -41,16 +57,29 @@ export const getServerSideProps: GetStaticProps = async () => {
 
   const { data } = await client.query({
     query: gql`
-    query Technologies {
-      technologies {
-        id
-        value
-        name
-        image {
-          url
-        }      
+    query LandingPage {
+  technologies {
+    id
+    value
+    name
+    image {
+      url
+    }
+  }
+  projects {
+    cover {
+      url
+    }
+    id
+    name  
+    libraries {      
+      icon {
+        url
       }
-    }`
+    }
+  }
+}
+`
   });
 
   console.log(data)
@@ -58,7 +87,8 @@ export const getServerSideProps: GetStaticProps = async () => {
 
   return {
     props: {
-      technologies: data.technologies
+      technologies: data.technologies,
+      projects: data.projects
     },
   };
 }
